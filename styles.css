@@ -1,11 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 /* Helping Classes */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Poppins";
+  font-family: "Lato";
 }
 a {
   text-decoration: none;
@@ -19,15 +18,14 @@ ul li {
 .no-border {
   border-radius: 0;
 }
-.bg-foreground{
+.bg-foreground {
   background-color: #f7f7f7;
 }
-.ON{
-display: block;
+.ON {
+  display: block;
 }
-.OFF{
+.OFF {
   display: none;
-
 }
 /* Helping Classes */
 /* Upper Navbar */
@@ -43,18 +41,29 @@ display: block;
 }
 .navbar-nav .nav-link:focus,
 .navbar-nav .nav-link:active {
-  color: white !important; 
+  color: white !important;
 }
 .navbar-nav .nav-link:hover:focus,
 .navbar-nav .nav-link:hover:active {
-  color: black !important; 
+  color: black !important;
 }
 
 /* //Upper Navbar */
 /* Lower Navbar */
-.logo {
+.logo-div {
   max-width: 200px;
 }
+.logo {
+  max-width: 100%;
+  object-fit: contain;
+  width: auto;
+}
+@media (max-width: 768px) {
+  .logo-div {
+    max-width: 150px;
+  }
+}
+
 .search-input {
   border: 2px solid black;
   outline: none;
@@ -72,7 +81,38 @@ display: block;
   text-align: center;
   border-radius: 1px;
 }
-.lower-nav-btn{
+.sideBarBtn i {
+  font-size: 25px;
+}
+.sideBarBtn {
+  font-size: 20px;
+  background: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.slide-bar {
+  transition: all 0.8s ease-in-out;
+  background-color: #2e2e2e;
+  height: 100vh;
+  width: 250px;
+  position: absolute;
+  top: 0;
+  right: -100%;
+  z-index: 10;
+}
+.close-btn {
+  font-size: 20px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+.close-btn i {
+  background-color: white;
+  padding: 5px 6px;
+  border-radius: 5px;
+}
+
+.lower-nav-btn {
   outline: 1px solid gray;
   border: none;
   background-color: white;
@@ -81,19 +121,22 @@ display: block;
   transition: all 0.2s ease-in-out;
   color: black;
 }
-.lower-nav-btn:hover{
+.lower-nav-btn:hover {
   color: white;
-  background-color:black;
+  background-color: black;
 }
-.active{
+.active {
   color: white;
-  background-color:black;
+  background-color: black;
 }
-.search-form{
+.search-form {
   max-width: 420px;
-  min-width: 120px;
   height: 2.5rem;
-
+}
+@media (max-width: 768px) {
+  .search-form {
+    height: 2.2rem;
+  }
 }
 
 /* //Lower Navbar */
@@ -114,8 +157,7 @@ display: block;
   height: 90%;
   object-fit: contain;
 }
-.cardsRow{
-  
+.cardsRow {
 }
 .card {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -147,22 +189,23 @@ display: block;
 }
 
 /* Cart */
+.order-summary {
+  display: none;
+}
 .cart-card {
+  box-sizing: border-box;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border: none;
   outline: none;
   border-radius: 0.5rem;
   height: 150px;
+  width: 90%;
   border-radius: 7px;
-  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   display: none;
-}
-.cart-btn{
-  margin: 10px;
+  justify-content: center;
 }
 /* Cart */
 
@@ -188,15 +231,15 @@ display: block;
   border-radius: 100%;
   padding: 0px 3px;
 }
-.plus:active{
+.plus:active {
   background-color: gray;
 }
-.minus:active{
+.minus:active {
   background-color: gray;
 }
-.bill-img-div{
+.bill-img-div {
   height: 170px;
-  width: 140px;  
+  width: 140px;
 }
 
 .bill-img {
@@ -204,8 +247,110 @@ display: block;
   padding: 10px;
   height: 100%;
 }
-
+.cart-btn{
+  margin-block: 10px;
+}
 /* User Selection */
+/*  Checkout Code*/
+.label {
+  cursor: pointer;
+}
+.label::after {
+  content: "*";
+  color: red;
+  padding: 3px;
+}
+.checkoutHeadings {
+  font-size: 17px;
+}
+.your-order {
+  outline: 10px solid rgb(247, 247, 247);
+}
+/*  Checkout Code*/
+
+/* Login */
+.login-container {
+  border: 1px solid rgba(242, 57, 127, 0.7);
+  border-radius: 10px;
+  display: none;
+}
+.signup-container{
+  border: 1px solid rgba(242, 57, 127, 0.7);
+  border-radius: 10px;
+  display: none;
+}
+.username-input-div,
+.password-input-div {
+  border-bottom: 1px solid black;
+  width: 80%;
+}
+.username-input,
+.password-input {
+  font-weight: 800;
+  text-align: start;
+  border: none !important;
+  outline: none !important ;
+  box-shadow: none !important ;
+}
+.username-input::placeholder {
+  font-weight: 700;
+}
+.password-input::placeholder {
+  font-weight: 700;
+}
+.letsGo-btn {
+  outline: none;
+  border: none;
+  background: none;
+  background-color: #583672;
+  color: white;
+  width: 50%;
+  padding-block: 10px;
+  border-radius: 9px;
+  font-weight: 600;
+}
+.login-img-div {
+  position: relative;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+}
+.login-img-div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    212.38deg,
+    rgba(242, 57, 127, 0.7) 0%,
+    rgba(175, 70, 189, 0.71) 100%
+  );
+}
+.login-img {
+  min-width: 100%;
+}
+/* Login */
+.Profile{
+  display: none;
+}
+.profile-container{
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  border-radius: 7px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.profile-container div img {
+  height: 50px;
+  width: 50px;
+}
 
 
 /* Footer */
@@ -254,3 +399,24 @@ display: block;
 }
 
 /* // Footer */
+
+
+/* Sign In */
+.sign-in{
+  display: none;
+}
+
+
+/* Sign In */
+
+
+/* Sign Up */
+.sign-up{
+  display: none;
+}
+
+
+/* Sign Up */
+.checkout-container{
+  display: none;
+}
