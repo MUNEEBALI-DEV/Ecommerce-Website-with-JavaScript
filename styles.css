@@ -29,6 +29,10 @@ ul li {
 }
 /* Helping Classes */
 /* Upper Navbar */
+.nav-item{
+  color: white;
+}
+
 .nav-link {
   padding: 0px 10px;
   margin: 0;
@@ -46,6 +50,10 @@ ul li {
 .navbar-nav .nav-link:hover:focus,
 .navbar-nav .nav-link:hover:active {
   color: black !important;
+}
+.clicked-top-nav{
+   color: black !important ;
+  background-color: white;
 }
 
 /* //Upper Navbar */
@@ -96,7 +104,7 @@ ul li {
   background-color: #2e2e2e;
   height: 100vh;
   width: 250px;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: -100%;
   z-index: 10;
@@ -125,7 +133,7 @@ ul li {
   color: white;
   background-color: black;
 }
-.active {
+.lower-nav-btn.active {
   color: white;
   background-color: black;
 }
@@ -156,6 +164,7 @@ ul li {
   width: 90%;
   height: 90%;
   object-fit: contain;
+  transition: all 0.2s ease-in-out;
 }
 .cardsRow {
 }
@@ -166,6 +175,15 @@ ul li {
   outline: none;
   border-radius: 0.5rem;
   min-height: 32rem;
+  cursor: pointer;
+ box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  transition: all 0.2s ease-in-out;
+}
+.card:hover {
+  transform: scale(1.02);
+}
+.card:hover  .card-img-top{
+  transform: scale(1.05);
 }
 .card-body {
   display: flex;
@@ -183,9 +201,13 @@ ul li {
   line-height: 17px;
 }
 
-.addToCart {
+ .card .card-body .addToCart{
   width: 100%;
   margin-top: auto;
+  background-color: black;
+}
+ .card .card-body .addToCart:hover{
+  background-color: rgb(0,86,179);
 }
 
 /* Cart */
@@ -247,7 +269,7 @@ ul li {
   padding: 10px;
   height: 100%;
 }
-.cart-btn{
+.cart-btn {
   margin-block: 10px;
 }
 /* User Selection */
@@ -274,7 +296,7 @@ ul li {
   border-radius: 10px;
   display: none;
 }
-.signup-container{
+.signup-container {
   border: 1px solid rgba(242, 57, 127, 0.7);
   border-radius: 10px;
   display: none;
@@ -332,10 +354,10 @@ ul li {
   min-width: 100%;
 }
 /* Login */
-.Profile{
+.Profile {
   display: none;
 }
-.profile-container{
+.profile-container {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border: none;
@@ -351,7 +373,6 @@ ul li {
   height: 50px;
   width: 50px;
 }
-
 
 /* Footer */
 
@@ -400,23 +421,49 @@ ul li {
 
 /* // Footer */
 
-
 /* Sign In */
-.sign-in{
+.sign-in {
   display: none;
 }
 
-
 /* Sign In */
 
-
 /* Sign Up */
-.sign-up{
+.sign-up {
   display: none;
 }
 
-
 /* Sign Up */
-.checkout-container{
+.checkout-container {
   display: none;
+}
+.spinner {
+  background: url(assets/images/favicon.png) no-repeat center center;
+     background-size: 50% 50%;
+    background-color: white;
+    height: 80px;
+    width: 80px;
+    z-index: 1000;
+    position: fixed;
+    border-radius: 100px;
+    border-style: solid;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50px, 50px);
+    font-size: larger;
+    font-weight: bold;
+}
+.spinner-overlay {
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+.spinner::after{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  content: "Loading......";
+    top: 105%;
 }

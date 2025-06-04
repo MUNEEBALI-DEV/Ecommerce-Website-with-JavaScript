@@ -36,24 +36,7 @@ let closeBtn = document.querySelector(".close-btn");
 let cartNo = 0;
 
 // Code
-// SideBar Code
-sideBarBtn.addEventListener("click", () => {
-  slideBar.style.right = "0";
-});
-closeBtn.addEventListener("click", () => {
-  slideBar.style.right = "-100%";
-});
 
-// SideBar Code
-ALL.addEventListener("click", () => {
-  disablingSignUpEtc();
-  mainContainer.style.display = "block";
-  cartCard.style.display = "none";
-  userSelection.style.display = "none";
-  cardsRow.forEach((card) => {
-    card.classList.remove("OFF");
-  });
-});
 // View Product Btn Code
 let viewProducts = document.querySelector(".view-products");
 
@@ -66,8 +49,41 @@ viewProducts.addEventListener("click", () => {
   });
 });
 
-ELECTRONICS.addEventListener("click", () => {
+// SideBar Code
+sideBarBtn.addEventListener("click", () => {
+  slideBar.style.right = "0";
+});
+closeBtn.addEventListener("click", () => {
+  slideBar.style.right = "-100%";
+});
+
+
+function addingBlackBGOnclick(e) {
+  let lowerNavBtn=document.querySelectorAll(".lower-nav-btn") 
+    lowerNavBtn.forEach(each => {
+        each.classList.remove("active")
+    });
+      e.target.classList.add("active")
+}
+
+
+
+// SideBar Code
+ALL.addEventListener("click", (e) => {
   disablingSignUpEtc();
+  addingBlackBGOnclick(e)
+  mainContainer.style.display = "block";
+  cartCard.style.display = "none";
+  userSelection.style.display = "none";
+  cardsRow.forEach((card) => {
+    card.classList.remove("OFF");
+  });
+});
+
+
+ELECTRONICS.addEventListener("click", (e) => {
+  disablingSignUpEtc();
+  addingBlackBGOnclick(e)
   mainContainer.style.display = "block";
   cartCard.style.display = "none";
   userSelection.style.display = "none";
@@ -82,7 +98,8 @@ ELECTRONICS.addEventListener("click", () => {
     }
   });
 });
-JEWELERY.addEventListener("click", () => {
+JEWELERY.addEventListener("click", (e) => {
+  addingBlackBGOnclick(e)
   disablingSignUpEtc();
   mainContainer.style.display = "block";
   cartCard.style.display = "none";
@@ -99,7 +116,8 @@ JEWELERY.addEventListener("click", () => {
   });
 });
 
-menClothing.addEventListener("click", () => {
+menClothing.addEventListener("click", (e) => {
+  addingBlackBGOnclick(e)
   disablingSignUpEtc();
   mainContainer.style.display = "block";
   cartCard.style.display = "none";
@@ -115,7 +133,8 @@ menClothing.addEventListener("click", () => {
     }
   });
 });
-womenClothing.addEventListener("click", () => {
+womenClothing.addEventListener("click", (e) => {
+  addingBlackBGOnclick(e)
   disablingSignUpEtc();
   mainContainer.style.display = "block";
   cartCard.style.display = "none";
@@ -134,6 +153,7 @@ womenClothing.addEventListener("click", () => {
 
 Home.forEach((each) => {
   each.addEventListener("click", (e) => {
+    
     mainContainer.style.display = "block";
     disablingSignUpEtc();
     cartCard.style.display = "none";
@@ -148,6 +168,7 @@ Home.forEach((each) => {
 
 Products.forEach((each) => {
   each.addEventListener("click", (e) => {
+    
     mainContainer.style.display = "block";
     disablingSignUpEtc();
     cartCard.style.display = "none";
@@ -162,6 +183,7 @@ Products.forEach((each) => {
 
 Cart.forEach((each) => {
   each.addEventListener("click", (e) => {
+    
     e.preventDefault();
     disablingSignUpEtc();
     mainContainer.style.display = "block";
@@ -293,6 +315,7 @@ function loadFromLocalStorage() {
       // Add event listeners
       removingCart(removeBtn);
       addingCartNo(selectionData);
+      
     });
     calculationOfPayment();
   }
@@ -474,9 +497,9 @@ function disablingSignUpEtc() {
 }
 
 Signup.forEach((each) => {
-  each.addEventListener("click", () => {
+  each.addEventListener("click", (e) => {
     // Disabling other containers
-
+    
     signupContainer.style.display = "block";
     mainContainer.style.display = "none";
     loginContainer.style.display = "none";
@@ -544,6 +567,7 @@ function OpeningPrfile() {
 
 Profile.forEach((each) => {
   each.addEventListener("click", () => {
+    
     OpeningPrfile();
   });
 });
@@ -565,7 +589,8 @@ function profileAfterSignUp(username, email) {
 // Login Code
 
 Login.forEach((each) => {
-  each.addEventListener("click", () => {
+  each.addEventListener("click", (e) => {
+    
     // Disabling other containers
     mainContainer.style.display = "none";
     signupContainer.style.display = "none";
@@ -764,7 +789,13 @@ function showingCartDetailInOrder(totalPrice) {
 
 // Call this when the page loads
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
+ let spinner=document.querySelector(".spinner")
+ let spinnerOverlay=document.querySelector(".spinner-overlay")
+    spinner.style.display="none"  
+    spinnerOverlay.style.display="none"  
   loadFromLocalStorage();
 
   allSignUp = JSON.parse(localStorage.getItem("signupData"));
@@ -1010,3 +1041,28 @@ function loadUserOrderHistory() {
         .filter(order => order.email === userEmail)
         .forEach(order => displayOrder(order));
 }
+
+
+
+// AOS
+AOS.init();
+
+// You can also pass an optional settings object
+// below listed default settings
+AOS.init({
+  
+  
+
+  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+  offset: 120, // offset (in px) from the original trigger point
+  delay: 0, // values from 0 to 3000, with step 50ms
+  duration: 700, // values from 0 to 3000, with step 50ms
+  easing: 'ease', // default easing for AOS animations
+  once: false, // whether animation should happen only once - while scrolling down
+  mirror: false, // whether elements should animate out while scrolling past them
+  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+});
+
+
+
