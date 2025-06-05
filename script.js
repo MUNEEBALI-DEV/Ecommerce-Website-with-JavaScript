@@ -57,21 +57,18 @@ closeBtn.addEventListener("click", () => {
   slideBar.style.right = "-100%";
 });
 
-
 function addingBlackBGOnclick(e) {
-  let lowerNavBtn=document.querySelectorAll(".lower-nav-btn") 
-    lowerNavBtn.forEach(each => {
-        each.classList.remove("active")
-    });
-      e.target.classList.add("active")
+  let lowerNavBtn = document.querySelectorAll(".lower-nav-btn");
+  lowerNavBtn.forEach((each) => {
+    each.classList.remove("active");
+  });
+  e.target.classList.add("active");
 }
-
-
 
 // SideBar Code
 ALL.addEventListener("click", (e) => {
   disablingSignUpEtc();
-  addingBlackBGOnclick(e)
+  addingBlackBGOnclick(e);
   mainContainer.style.display = "block";
   cartCard.style.display = "none";
   userSelection.style.display = "none";
@@ -80,10 +77,9 @@ ALL.addEventListener("click", (e) => {
   });
 });
 
-
 ELECTRONICS.addEventListener("click", (e) => {
   disablingSignUpEtc();
-  addingBlackBGOnclick(e)
+  addingBlackBGOnclick(e);
   mainContainer.style.display = "block";
   cartCard.style.display = "none";
   userSelection.style.display = "none";
@@ -99,7 +95,7 @@ ELECTRONICS.addEventListener("click", (e) => {
   });
 });
 JEWELERY.addEventListener("click", (e) => {
-  addingBlackBGOnclick(e)
+  addingBlackBGOnclick(e);
   disablingSignUpEtc();
   mainContainer.style.display = "block";
   cartCard.style.display = "none";
@@ -117,7 +113,7 @@ JEWELERY.addEventListener("click", (e) => {
 });
 
 menClothing.addEventListener("click", (e) => {
-  addingBlackBGOnclick(e)
+  addingBlackBGOnclick(e);
   disablingSignUpEtc();
   mainContainer.style.display = "block";
   cartCard.style.display = "none";
@@ -134,7 +130,7 @@ menClothing.addEventListener("click", (e) => {
   });
 });
 womenClothing.addEventListener("click", (e) => {
-  addingBlackBGOnclick(e)
+  addingBlackBGOnclick(e);
   disablingSignUpEtc();
   mainContainer.style.display = "block";
   cartCard.style.display = "none";
@@ -167,7 +163,6 @@ Home.forEach((each) => {
 
 Products.forEach((each) => {
   each.addEventListener("click", (e) => {
-    
     mainContainer.style.display = "block";
     disablingSignUpEtc();
     cartCard.style.display = "none";
@@ -182,20 +177,17 @@ Products.forEach((each) => {
 
 Cart.forEach((each) => {
   each.addEventListener("click", (e) => {
-    
     e.preventDefault();
     disablingSignUpEtc();
     mainContainer.style.display = "block";
     cardsRow.forEach((card) => {
       card.classList.add("OFF");
 
-     let itemsList = document.querySelector(".items-list");
-      let noOfItem =itemsList.querySelectorAll("div").length;
-      if (noOfItem== 0) {
-    cartCard.style.display = "flex";
-        
+      let itemsList = document.querySelector(".items-list");
+      let noOfItem = itemsList.querySelectorAll("div").length;
+      if (noOfItem == 0) {
+        cartCard.style.display = "flex";
       }
-
 
       let allSelectionData = userSelection.querySelectorAll(".selection-data");
       allSelectionData.forEach((ele) => {
@@ -314,7 +306,6 @@ function loadFromLocalStorage() {
       // Add event listeners
       removingCart(removeBtn);
       addingCartNo(selectionData);
-      
     });
     calculationOfPayment();
   }
@@ -482,9 +473,6 @@ let Signup = document.querySelectorAll(".Signup");
 let signupContainer = document.querySelector(".signup-container");
 let signupForm = document.querySelector(".signup-form");
 
-let signupUsernameInput = document.querySelector(".signup-username");
-let signupEmailInput = document.querySelector(".signup-email");
-let signupPasswordInput = document.querySelector(".signup-password");
 let signupProceedBtn = document.querySelector(".signup-proceed");
 
 // Disabling other containers
@@ -497,7 +485,7 @@ function disablingSignUpEtc() {
 
 Signup.forEach((each) => {
   each.addEventListener("click", (e) => {
-    // Disabling other containers    
+    // Disabling other containers
     signupContainer.style.display = "block";
     mainContainer.style.display = "none";
     loginContainer.style.display = "none";
@@ -517,25 +505,31 @@ signupForm.addEventListener("submit", (e) => {
 });
 
 let allSignUp = [];
+signupProceedBtn.addEventListener("click", (e) => {
+  if (!Array.isArray(allSignUp)) {
+    allSignUp = [];
+  }
 
+  let signupUsernameInput = document.querySelector(".signup-username");
+  let signupEmailInput = document.querySelector(".signup-email");
+  let signupPasswordInput = document.querySelector(".signup-password");
 
-  function signupProceedFunc() {
-    
   let username = signupUsernameInput.value;
   let email = signupEmailInput.value;
   let password = signupPasswordInput.value;
+
   if (!username || !email || !password) {
-    alert("Please fill the SignUp details completly")
+    alert("Please fill the SignUp details completly");
     return;
   }
-  if ( allSignUp && allSignUp.some((u) => u.email === email)) {
+  if (allSignUp && allSignUp.some((u) => u.email === email)) {
     return alert("Email already exists");
   }
-  if (  allSignUp && allSignUp.some((u) => u.username === username)) {
+  if (allSignUp && allSignUp.some((u) => u.username === username)) {
     return alert("Username already exists");
   }
 
-    allSignUp.push({
+  allSignUp.push({
     username,
     email,
     password,
@@ -545,14 +539,7 @@ let allSignUp = [];
 
   alert("Account Created");
   profileAfterSignUp(username, email);
-  }
-
-
-signupProceedBtn.addEventListener("click", (e) => {
-  signupProceedFunc()
 });
-
-
 
 // Profile Code
 let userStatus = "logout";
@@ -579,7 +566,6 @@ function OpeningPrfile() {
 
 Profile.forEach((each) => {
   each.addEventListener("click", () => {
-    
     OpeningPrfile();
   });
 });
@@ -602,7 +588,6 @@ function profileAfterSignUp(username, email) {
 
 Login.forEach((each) => {
   each.addEventListener("click", (e) => {
-    
     // Disabling other containers
     mainContainer.style.display = "none";
     signupContainer.style.display = "none";
@@ -641,22 +626,24 @@ function profileAfterLogin(loginEmail, loginUsername) {
   });
 }
 
-function loginProceedFunction() {
-   emailValue = loginEmailInput.value;
-      passwordValue = loginPasswordInput.value;
+loginProceedBtn.addEventListener("click", () => {
+  emailValue = loginEmailInput.value;
+  passwordValue = loginPasswordInput.value;
 
-      if (!emailValue || !passwordValue ) {
-    alert("Please fill the login details completly")
+  if (!emailValue || !passwordValue) {
+    alert("Please fill the login details completly");
     return;
   }
 
   let signupData = localStorage.getItem("signupData");
-  console.log( signupData  );
-  
-  let parsedSignupData = JSON.parse(signupData);
+  let parsedSignupData = [];
 
-  console.log( parsedSignupData  );
-
+  if (signupData) {
+    parsedSignupData = JSON.parse(signupData);
+  } else {
+    alert("No user data found. Please sign up first.");
+    return;
+  }
 
   let loginSuccessful = false;
 
@@ -670,7 +657,7 @@ function loginProceedFunction() {
       localStorage.setItem("loginUsername", JSON.stringify(eachobj.username));
       profileAfterLogin(eachobj.email, eachobj.username);
       loginSuccessful = true;
-      loadUserOrderHistory()
+      loadUserOrderHistory();
       break;
     }
   }
@@ -678,11 +665,6 @@ function loginProceedFunction() {
   if (!loginSuccessful) {
     alert("Incorrect Username or Password");
   }
-}
-
-
-loginProceedBtn.addEventListener("click", () => {
-    loginProceedFunction()
 });
 
 // Logout Btn Code
@@ -782,8 +764,7 @@ function showingCartDetailInOrder(totalPrice) {
   TotalPrice.innerHTML = `$${(totalPrice + 2.1).toFixed(2)}`;
 
   function zeroPriceInOrder() {
-
-    if (calculatedPrice == 0  ) {
+    if (calculatedPrice == 0) {
       alert("Your Cart is empty,Please Add some Items");
       checkoutContainer.style.display = "none";
       mainContainer.style.display = "block";
@@ -793,15 +774,12 @@ function showingCartDetailInOrder(totalPrice) {
       cardsRow.forEach((card) => {
         card.classList.remove("OFF");
         card.classList.add("ON");
-      });      
-
-     
+      });
     }
-
   }
 
-  Checkout.forEach((each)=> {
-      each.addEventListener("click", () => {
+  Checkout.forEach((each) => {
+    each.addEventListener("click", () => {
       userStatusChecking();
       mainContainer.style.display = "none";
       profileContainer.style.display = "none";
@@ -811,32 +789,30 @@ function showingCartDetailInOrder(totalPrice) {
   });
 }
 
-
 // Call this when the page loads
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
- let spinner=document.querySelector(".spinner")
- let spinnerOverlay=document.querySelector(".spinner-overlay")
-    spinner.style.display="none"  
-    spinnerOverlay.style.display="none"  
+  let spinner = document.querySelector(".spinner");
+  let spinnerOverlay = document.querySelector(".spinner-overlay");
+  spinner.style.display = "none";
+  spinnerOverlay.style.display = "none";
   loadFromLocalStorage();
 
-  allSignUp = JSON.parse(localStorage.getItem("signupData"));
-  
+ let savedSignup = localStorage.getItem("signupData");
+ allSignUp = savedSignup ? JSON.parse(savedSignup) : [];
+
 
   let loginUsername = JSON.parse(localStorage.getItem("loginUsername"));
   let loginEmail = JSON.parse(localStorage.getItem("loginEmail"));
 
   if (loginEmail && loginUsername) {
     profileAfterLogin(loginEmail, loginUsername);
-     loadUserOrderHistory(); // Load their order historyz
+    loadUserOrderHistory(); // Load their order historyz
   } else {
     logoutProcess();
   }
 
-calculationOfPayment()
+  calculationOfPayment();
   loginContainer.style.display = "none";
   cartCard.style.display = "none";
 });
@@ -845,59 +821,54 @@ calculationOfPayment()
 let checkoutForm = document.querySelector(".checkout-form");
 
 function formIsFilled() {
-    let allInputs = checkoutForm.querySelectorAll("input, select, textarea");
-    
-    for (let element of allInputs) {
-        // Skip radio buttons that aren't checked
-        if (element.type === 'radio' && !element.checked) continue;
-        
-        if (element.required && !element.value.trim()) {
-            return false;
-        }
+  let allInputs = checkoutForm.querySelectorAll("input, select, textarea");
+
+  for (let element of allInputs) {
+    // Skip radio buttons that aren't checked
+    if (element.type === "radio" && !element.checked) continue;
+
+    if (element.required && !element.value.trim()) {
+      return false;
     }
-    return true;
+  }
+  return true;
 }
 
-checkoutForm.addEventListener("submit", function(e) {
-    e.preventDefault(); // Prevent actual submission for demo
-    
-    if (formIsFilled()) {
-      alert("Congrats,Your Order is placed");
-      appendingOrderHistory()
-      removingPreviousData()
+checkoutForm.addEventListener("submit", function (e) {
+  e.preventDefault(); // Prevent actual submission for demo
 
-    } else {
-        alert("Form is Incomplete");
-        checkoutForm.reportValidity();
-
-    }
+  if (formIsFilled()) {
+    alert("Congrats,Your Order is placed");
+    appendingOrderHistory();
+    removingPreviousData();
+  } else {
+    alert("Form is Incomplete");
+    checkoutForm.reportValidity();
+  }
 });
 
 // removing carts detail once submitted
 function removingPreviousData() {
-
   let allSelectionData = userSelection.querySelectorAll(".selection-data");
-    allSelectionData.forEach((each)=>{
-      each.remove()
-    })
-    localStorage.removeItem("cart");
-    calculationOfPayment()
-    cartCard.style.display = "none";
+  allSelectionData.forEach((each) => {
+    each.remove();
+  });
+  localStorage.removeItem("cart");
+  calculationOfPayment();
+  cartCard.style.display = "none";
 }
-// Code when order is placed 
-
-
+// Code when order is placed
 
 function generateOrderId() {
   // Characters to use in the random part
-  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  let result = 'Order #';
-  
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "Order #";
+
   // Generate 8 random characters
   for (let i = 0; i < 8; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
-  
+
   return result;
 }
 function getCurrentDate() {
@@ -905,10 +876,9 @@ function getCurrentDate() {
   const day = now.getDate();
   const month = now.getMonth() + 1; // Months are 0-11 in JavaScript
   const year = now.getFullYear();
-  
+
   return `${day}/${month}/${year}`;
 }
-
 
 //  function appendingOrderHistory() {
 //     // Create the main container div
@@ -922,7 +892,7 @@ function getCurrentDate() {
 // // Create and append the order elements
 // const orderNumber = document.createElement('p');
 // orderNumber.className = 'fw-bolder fs-5 mb-0';
-// orderNumber.innerHTML =  generateOrderId();  
+// orderNumber.innerHTML =  generateOrderId();
 
 // // let localOrderId=orderNumber.innerHTML;
 // // localStorage.setItem("localOrderId",JSON.stringify(localOrderId))
@@ -953,16 +923,13 @@ function getCurrentDate() {
 // const orderItems = document.createElement('p');
 // orderItems.className = 'text-gray mb-0';
 //   let itemsList = document.querySelector(".items-list");
-  
-  
+
 //     let noOfItem =itemsList.querySelectorAll("div").length;
-  
 
 // orderItems.innerHTML = `Total items:<span class="fw-bolder"> ${ noOfItem }</span>`;
 
 // //     let localOrderItemsNO=orderItems.innerHTML ;
 // // localStorage.setItem("localOrderItemsNO",JSON.stringify(localOrderItemsNO))
-
 
 // // Append all elements to order details
 // orderDetails.appendChild(orderNumber);
@@ -991,83 +958,89 @@ function getCurrentDate() {
 
 // Modify your appendingOrderHistory function to save to localStorage
 function appendingOrderHistory() {
-    // Generate order data
-    const orderData = {
-        id: generateOrderId(),
-        date: getCurrentDate(),
-        total: document.querySelector(".order-total").innerHTML,
-        address: document.querySelector("#Address").value,
-        itemsCount: document.querySelector(".items-list").querySelectorAll("div").length,
-        email: JSON.parse(localStorage.getItem("loginEmail")) // Associate with user
-    };
+  // Generate order data
+  const orderData = {
+    id: generateOrderId(),
+    date: getCurrentDate(),
+    total: document.querySelector(".order-total").innerHTML,
+    address: document.querySelector("#Address").value,
+    itemsCount: document.querySelector(".items-list").querySelectorAll("div")
+      .length,
+    email: JSON.parse(localStorage.getItem("loginEmail")), // Associate with user
+  };
 
-    // Save to localStorage
-    let orderHistory = JSON.parse(localStorage.getItem("orderHistory") || "[]");
-    orderHistory.push(orderData);
-    localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
+  // Save to localStorage
+  let orderHistory = JSON.parse(localStorage.getItem("orderHistory") || "[]");
+  orderHistory.push(orderData);
+  localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
 
-    // Display the order
-    displayOrder(orderData);
-    
-    checkoutContainer.style.display = "none";
-    profileContainer.style.display = "block";
+  // Display the order
+  displayOrder(orderData);
+
+  checkoutContainer.style.display = "none";
+  profileContainer.style.display = "block";
 }
 
 // / New function to display a single order
 function displayOrder(orderData) {
-    const orderContainer = document.createElement('div');
-    orderContainer.className = 'd-flex flex-column flex-md-row align-items-md-center justify-content-between border-bottom py-3 w-100';
+  const orderContainer = document.createElement("div");
+  orderContainer.className =
+    "d-flex flex-column flex-md-row align-items-md-center justify-content-between border-bottom py-3 w-100";
 
-    const orderDetails = document.createElement('div');
-    orderDetails.className = 'order-history-details';
+  const orderDetails = document.createElement("div");
+  orderDetails.className = "order-history-details";
 
-    const orderNumber = document.createElement('p');
-    orderNumber.className = 'fw-bolder fs-5 mb-0';
-    orderNumber.innerHTML = orderData.id;
+  const orderNumber = document.createElement("p");
+  orderNumber.className = "fw-bolder fs-5 mb-0";
+  orderNumber.innerHTML = orderData.id;
 
-    const orderDate = document.createElement('p');
-    orderDate.className = 'text-gray mb-0';
-    orderDate.innerHTML = `Date: <b>${orderData.date}</b>`;
+  const orderDate = document.createElement("p");
+  orderDate.className = "text-gray mb-0";
+  orderDate.innerHTML = `Date: <b>${orderData.date}</b>`;
 
-    const orderTotal = document.createElement('p');
-    orderTotal.className = 'text-gray mb-0';
-    orderTotal.innerHTML = `Total:<span class="fw-bolder">${orderData.total}</span>`;
+  const orderTotal = document.createElement("p");
+  orderTotal.className = "text-gray mb-0";
+  orderTotal.innerHTML = `Total:<span class="fw-bolder">${orderData.total}</span>`;
 
-    const orderAddress = document.createElement('p');
-    orderAddress.className = 'text-gray mb-0';
-    orderAddress.innerHTML = `Address:<span class="fw-bolder">${orderData.address}</span>`;
+  const orderAddress = document.createElement("p");
+  orderAddress.className = "text-gray mb-0";
+  orderAddress.innerHTML = `Address:<span class="fw-bolder">${orderData.address}</span>`;
 
-    const orderItems = document.createElement('p');
-    orderItems.className = 'text-gray mb-0';
-    orderItems.innerHTML = `Total items:<span class="fw-bolder">${orderData.itemsCount}</span>`;
+  const orderItems = document.createElement("p");
+  orderItems.className = "text-gray mb-0";
+  orderItems.innerHTML = `Total items:<span class="fw-bolder">${orderData.itemsCount}</span>`;
 
-    orderDetails.append(orderNumber, orderDate, orderTotal, orderAddress, orderItems);
+  orderDetails.append(
+    orderNumber,
+    orderDate,
+    orderTotal,
+    orderAddress,
+    orderItems
+  );
 
-    const completeButton = document.createElement('button');
-    completeButton.type = 'button';
-    completeButton.className = 'btn btn-success me-auto me-md-0 my-3 my-md-0';
-    completeButton.readOnly = true;
-    completeButton.textContent = 'Complete';
+  const completeButton = document.createElement("button");
+  completeButton.type = "button";
+  completeButton.className = "btn btn-success me-auto me-md-0 my-3 my-md-0";
+  completeButton.readOnly = true;
+  completeButton.textContent = "Complete";
 
-    orderContainer.append(orderDetails, completeButton);
-    document.querySelector(".order-history").appendChild(orderContainer);
+  orderContainer.append(orderDetails, completeButton);
+  document.querySelector(".order-history").appendChild(orderContainer);
 }
 
 // Load all orders for the current user when they log in
 function loadUserOrderHistory() {
-    const orderHistory = JSON.parse(localStorage.getItem("orderHistory") || "[]");
-    const userEmail = JSON.parse(localStorage.getItem("loginEmail"));
-    
-    // Clear existing orders
-    document.querySelector(".order-history").innerHTML = "";
-    
-    // Filter and display orders for this user
-    orderHistory
-        .filter(order => order.email === userEmail)
-        .forEach(order => displayOrder(order));
+  const orderHistory = JSON.parse(localStorage.getItem("orderHistory") || "[]");
+  const userEmail = JSON.parse(localStorage.getItem("loginEmail"));
+
+  // Clear existing orders
+  document.querySelector(".order-history").innerHTML = "";
+
+  // Filter and display orders for this user
+  orderHistory
+    .filter((order) => order.email === userEmail)
+    .forEach((order) => displayOrder(order));
 }
-
-
 
 // AOS
 AOS.init();
@@ -1075,19 +1048,12 @@ AOS.init();
 // You can also pass an optional settings object
 // below listed default settings
 AOS.init({
-  
-  
-
   // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
   offset: 120, // offset (in px) from the original trigger point
   delay: 0, // values from 0 to 3000, with step 50ms
   duration: 700, // values from 0 to 3000, with step 50ms
-  easing: 'ease', // default easing for AOS animations
+  easing: "ease", // default easing for AOS animations
   once: false, // whether animation should happen only once - while scrolling down
   mirror: false, // whether elements should animate out while scrolling past them
-  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
-
+  anchorPlacement: "top-bottom", // defines which position of the element regarding to window should trigger the animation
 });
-
-
-
