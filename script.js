@@ -153,12 +153,11 @@ womenClothing.addEventListener("click", (e) => {
 
 Home.forEach((each) => {
   each.addEventListener("click", (e) => {
-    
+    e.preventDefault();
     mainContainer.style.display = "block";
     disablingSignUpEtc();
     cartCard.style.display = "none";
     userSelection.style.display = "none";
-    e.preventDefault();
     ALL.classList.add("OFF");
     cardsRow.forEach((card) => {
       card.classList.remove("OFF");
@@ -498,14 +497,13 @@ function disablingSignUpEtc() {
 
 Signup.forEach((each) => {
   each.addEventListener("click", (e) => {
-    // Disabling other containers
-    
+    // Disabling other containers    
     signupContainer.style.display = "block";
     mainContainer.style.display = "none";
     loginContainer.style.display = "none";
     profileContainer.style.display = "none";
-    checkoutContainer.style.display = "none";
     orderSummary.style.display = "none";
+    checkoutContainer.style.display = "none";
     userSelection.style.display = "none";
     cartCard.style.display = "none";
     cardsRow.forEach((card) => {
@@ -519,11 +517,17 @@ signupForm.addEventListener("submit", (e) => {
 });
 
 let allSignUp = [];
-signupProceedBtn.addEventListener("click", () => {
+
+
+  function signupProceedFunc() {
+    
   let username = signupUsernameInput.value;
   let email = signupEmailInput.value;
   let password = signupPasswordInput.value;
-
+  if (!username || !email || !password) {
+    alert("Please fill the SignUp details completly")
+    return;
+  }
   if ( allSignUp && allSignUp.some((u) => u.email === email)) {
     return alert("Email already exists");
   }
@@ -541,7 +545,18 @@ signupProceedBtn.addEventListener("click", () => {
 
   alert("Account Created");
   profileAfterSignUp(username, email);
+  }
+
+
+signupProceedBtn.addEventListener("click", (e) => {
+  signupProceedFunc()
 });
+signupProceedBtn.addEventListener("touchstart", (e) => {
+  signupProceedFunc()
+});
+
+
+
 // Profile Code
 let userStatus = "logout";
 
@@ -629,7 +644,15 @@ function profileAfterLogin(loginEmail, loginUsername) {
   });
 }
 
-loginProceedBtn.addEventListener("click", () => {
+function loginProceedFunction() {
+   emailValue = loginEmailInput.value;
+      passwordValue = loginPasswordInput.value;
+
+      if (!emailValue || !passwordValue ) {
+    alert("Please fill the login details completly")
+    return;
+  }
+
   let signupData = localStorage.getItem("signupData");
   console.log( signupData  );
   
@@ -658,6 +681,13 @@ loginProceedBtn.addEventListener("click", () => {
   if (!loginSuccessful) {
     alert("Incorrect Username or Password");
   }
+}
+
+loginProceedBtn.addEventListener("click", () => {
+    loginProceedFunction()
+});
+loginProceedBtn.addEventListener("touchstart", () => {
+    loginProceedFunction()
 });
 
 // Logout Btn Code
@@ -799,7 +829,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadFromLocalStorage();
 
   allSignUp = JSON.parse(localStorage.getItem("signupData"));
-  console.log(allSignUp);
+  
 
   let loginUsername = JSON.parse(localStorage.getItem("loginUsername"));
   let loginEmail = JSON.parse(localStorage.getItem("loginEmail"));
