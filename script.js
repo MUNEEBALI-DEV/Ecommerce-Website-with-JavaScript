@@ -57,6 +57,31 @@ closeBtn.addEventListener("click", () => {
   slideBar.style.right = "-100%";
 });
 
+//This code closes side-bar  automatically when user click on the home , prducts , login or sign up button in  slide bar
+
+let slidebarItems = [
+  document.querySelector(".slide-bar .Home"),
+  document.querySelector(".slide-bar .Products"),
+  document.querySelector(".slide-bar .Cart"),
+  document.querySelector(".slide-bar .Checkout"),
+  document.querySelector(".slide-bar .Login"),
+  document.querySelector(".slide-bar .Signup"),
+  document.querySelector(".slide-bar .Profile")
+];
+
+slidebarItems.forEach(item => {
+  if (item) {
+    item.addEventListener("click", () => {
+      slideBar.style.right = "-100%";
+    });
+  }
+});
+
+
+
+
+// 
+
 function addingBlackBGOnclick(e) {
   let lowerNavBtn = document.querySelectorAll(".lower-nav-btn");
   lowerNavBtn.forEach((each) => {
@@ -383,6 +408,7 @@ addToCartBtn.forEach((eachCart) => {
     orderSummary.style.display = "block";
     cartCard.style.display = "none";
     createCartClone(eachCart);
+    localStorage.setItem("cartData", "true");
     calculationOfPayment();
   });
 });
@@ -653,6 +679,7 @@ loginProceedBtn.addEventListener("click", () => {
       eachobj.password == loginPasswordInput.value
     ) {
       alert("Account Successfully Login");
+      localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("loginEmail", JSON.stringify(eachobj.email));
       localStorage.setItem("loginUsername", JSON.stringify(eachobj.username));
       profileAfterLogin(eachobj.email, eachobj.username);
@@ -687,6 +714,7 @@ function logoutProcess() {
   loginContainer.style.display = "block";
 
   userStatus = "logout";
+  localStorage.setItem("isLoggedIn", "false");
 }
 let logoutBtn = document.querySelector(".logout-btn");
 logoutBtn.addEventListener("click", () => {
@@ -699,7 +727,6 @@ logoutBtn.addEventListener("click", () => {
 
 function userStatusChecking() {
   if (userStatus == "logout") {
-    alert("Login or SignUp");
     loginContainer.style.display = "block";
     checkoutContainer.style.display = "none";
     mainContainer.style.display = "none";
@@ -765,7 +792,9 @@ function showingCartDetailInOrder(totalPrice) {
 
   function zeroPriceInOrder() {
     if (calculatedPrice == 0) {
-      alert("Your Cart is empty,Please Add some Items");
+
+      localStorage.setItem("cartData", "false");
+
       checkoutContainer.style.display = "none";
       mainContainer.style.display = "block";
       signupContainer.style.display = "none";
@@ -776,9 +805,16 @@ function showingCartDetailInOrder(totalPrice) {
         card.classList.add("ON");
       });
     }
+  else
+  {
+      localStorage.setItem("cartData", "true");
+
+  }
+
   }
 
   Checkout.forEach((each) => {
+    
     each.addEventListener("click", () => {
       userStatusChecking();
       mainContainer.style.display = "none";
@@ -787,11 +823,40 @@ function showingCartDetailInOrder(totalPrice) {
       zeroPriceInOrder();
     });
   });
+
+
+  
 }
 
 // Call this when the page loads
 
 document.addEventListener("DOMContentLoaded", () => {
+// showing alert when user clicks on checkout and cart is empty or user is log ot
+
+
+ document.querySelectorAll(".Checkout").forEach(btn => {
+    btn.onclick = () => {
+      
+      const userLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+      const cartItems = (localStorage.getItem("cartData")) === "true" ;
+
+      if (!userLoggedIn && !cartItems) {
+        alert("Please Login or Sign Up, and add items to your cart.");
+      } else if (!userLoggedIn) {
+        alert("Please Login or Sign Up.");
+      } else if (!cartItems) {
+        alert("Your cart is empty. Please add some items.");
+      } else {
+        // Proceed to checkout
+        document.querySelector(".main-container").style.display = "none";
+        document.querySelector(".checkout-container").style.display = "block";
+      }
+
+    };
+  });
+
+// showing alert when user clicks on checkout and cart is empty or user is log ot
+
   let spinner = document.querySelector(".spinner");
   let spinnerOverlay = document.querySelector(".spinner-overlay");
   spinner.style.display = "none";
