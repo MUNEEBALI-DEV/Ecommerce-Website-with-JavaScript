@@ -40,7 +40,7 @@ let cartNo = 0;
 // View Product Btn Code
 let viewProducts = document.querySelector(".view-products");
 
-viewProducts.addEventListener("pointerdown", () => {
+viewProducts.addEventListener("click", () => {
   cartCard.style.display = "none";
   mainContainer.style.display = "block";
   cardsRow.forEach((card) => {
@@ -50,10 +50,10 @@ viewProducts.addEventListener("pointerdown", () => {
 });
 
 // SideBar Code
-sideBarBtn.addEventListener("pointerdown", () => {
+sideBarBtn.addEventListener("click", () => {
   slideBar.style.right = "0";
 });
-closeBtn.addEventListener("pointerdown", () => {
+closeBtn.addEventListener("click", () => {
   slideBar.style.right = "-100%";
 });
 
@@ -69,7 +69,7 @@ function addingBlackBGOnclick(e) {
 
 
 // SideBar Code
-ALL.addEventListener("pointerdown", (e) => {
+ALL.addEventListener("click", (e) => {
   disablingSignUpEtc();
   addingBlackBGOnclick(e)
   mainContainer.style.display = "block";
@@ -81,7 +81,7 @@ ALL.addEventListener("pointerdown", (e) => {
 });
 
 
-ELECTRONICS.addEventListener("pointerdown", (e) => {
+ELECTRONICS.addEventListener("click", (e) => {
   disablingSignUpEtc();
   addingBlackBGOnclick(e)
   mainContainer.style.display = "block";
@@ -98,7 +98,7 @@ ELECTRONICS.addEventListener("pointerdown", (e) => {
     }
   });
 });
-JEWELERY.addEventListener("pointerdown", (e) => {
+JEWELERY.addEventListener("click", (e) => {
   addingBlackBGOnclick(e)
   disablingSignUpEtc();
   mainContainer.style.display = "block";
@@ -116,7 +116,7 @@ JEWELERY.addEventListener("pointerdown", (e) => {
   });
 });
 
-menClothing.addEventListener("pointerdown", (e) => {
+menClothing.addEventListener("click", (e) => {
   addingBlackBGOnclick(e)
   disablingSignUpEtc();
   mainContainer.style.display = "block";
@@ -133,7 +133,7 @@ menClothing.addEventListener("pointerdown", (e) => {
     }
   });
 });
-womenClothing.addEventListener("pointerdown", (e) => {
+womenClothing.addEventListener("click", (e) => {
   addingBlackBGOnclick(e)
   disablingSignUpEtc();
   mainContainer.style.display = "block";
@@ -152,7 +152,7 @@ womenClothing.addEventListener("pointerdown", (e) => {
 });
 
 Home.forEach((each) => {
-  each.addEventListener("pointerdown", (e) => {
+  each.addEventListener("click", (e) => {
     e.preventDefault();
     mainContainer.style.display = "block";
     disablingSignUpEtc();
@@ -166,7 +166,7 @@ Home.forEach((each) => {
 });
 
 Products.forEach((each) => {
-  each.addEventListener("pointerdown", (e) => {
+  each.addEventListener("click", (e) => {
     
     mainContainer.style.display = "block";
     disablingSignUpEtc();
@@ -181,7 +181,7 @@ Products.forEach((each) => {
 });
 
 Cart.forEach((each) => {
-  each.addEventListener("pointerdown", (e) => {
+  each.addEventListener("click", (e) => {
     
     e.preventDefault();
     disablingSignUpEtc();
@@ -386,7 +386,7 @@ function createCartClone(eachCart) {
 }
 
 addToCartBtn.forEach((eachCart) => {
-  eachCart.addEventListener("pointerdown", (e) => {
+  eachCart.addEventListener("click", (e) => {
     e.preventDefault();
     alert("Product added successfully");
     orderSummary.style.display = "block";
@@ -397,7 +397,7 @@ addToCartBtn.forEach((eachCart) => {
 });
 
 function removingCart(removeBtn) {
-  removeBtn.addEventListener("pointerdown", () => {
+  removeBtn.addEventListener("click", () => {
     removeBtn.closest(".selection-data").remove();
     calculationOfPayment();
     saveToLocalStorage();
@@ -424,13 +424,13 @@ function zeroQuantityChecking() {
 
 function addingCartNo(selectionData) {
   let quantity = selectionData.querySelector(".quantity").value;
-  selectionData.querySelector(".plus").addEventListener("pointerdown", () => {
+  selectionData.querySelector(".plus").addEventListener("click", () => {
     quantity++;
     selectionData.querySelector(".quantity").value = quantity;
     calculationOfPayment();
     saveToLocalStorage();
   });
-  selectionData.querySelector(".minus").addEventListener("pointerdown", () => {
+  selectionData.querySelector(".minus").addEventListener("click", () => {
     if (quantity > 0) {
       quantity--;
       selectionData.querySelector(".quantity").value = quantity;
@@ -496,7 +496,7 @@ function disablingSignUpEtc() {
 }
 
 Signup.forEach((each) => {
-  each.addEventListener("pointerdown", (e) => {
+  each.addEventListener("click", (e) => {
     // Disabling other containers    
     signupContainer.style.display = "block";
     mainContainer.style.display = "none";
@@ -548,7 +548,7 @@ let allSignUp = [];
   }
 
 
-signupProceedBtn.addEventListener("pointerdown", (e) => {
+signupProceedBtn.addEventListener("click", (e) => {
   signupProceedFunc()
 });
 
@@ -578,7 +578,7 @@ function OpeningPrfile() {
 }
 
 Profile.forEach((each) => {
-  each.addEventListener("pointerdown", () => {
+  each.addEventListener("click", () => {
     
     OpeningPrfile();
   });
@@ -601,7 +601,7 @@ function profileAfterSignUp(username, email) {
 // Login Code
 
 Login.forEach((each) => {
-  each.addEventListener("pointerdown", (e) => {
+  each.addEventListener("click", (e) => {
     
     // Disabling other containers
     mainContainer.style.display = "none";
@@ -681,7 +681,7 @@ function loginProceedFunction() {
 }
 
 
-loginProceedBtn.addEventListener("pointerdown", () => {
+loginProceedBtn.addEventListener("click", () => {
     loginProceedFunction()
 });
 
@@ -707,7 +707,7 @@ function logoutProcess() {
   userStatus = "logout";
 }
 let logoutBtn = document.querySelector(".logout-btn");
-logoutBtn.addEventListener("pointerdown", () => {
+logoutBtn.addEventListener("click", () => {
   logoutProcess();
 });
 
@@ -737,7 +737,7 @@ function userStatusChecking() {
 }
 
 let proceedToCheckoutBtn = document.querySelector(".proceed-to-checkout");
-proceedToCheckoutBtn.addEventListener("pointerdown", () => {
+proceedToCheckoutBtn.addEventListener("click", () => {
   userStatusChecking();
   mainContainer.style.display = "none";
 });
@@ -801,7 +801,7 @@ function showingCartDetailInOrder(totalPrice) {
   }
 
   Checkout.forEach((each)=> {
-      each.addEventListener("pointerdown", () => {
+      each.addEventListener("click", () => {
       userStatusChecking();
       mainContainer.style.display = "none";
       profileContainer.style.display = "none";
