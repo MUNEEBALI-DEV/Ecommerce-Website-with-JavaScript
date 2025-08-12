@@ -7,7 +7,6 @@ let menClothing = document.querySelector(".MEN-CLOTHING");
 let womenClothing = document.querySelector(".WOMEN-CLOTHING");
 // Upper Navbar
 let Home = document.querySelectorAll(".Home");
-let Products = document.querySelectorAll(".Products");
 let Cart = document.querySelectorAll(".Cart");
 let Checkout = document.querySelectorAll(".Checkout");
 let checkoutContainer = document.querySelector(".checkout-container");
@@ -66,10 +65,10 @@ let slidebarItems = [
   document.querySelector(".slide-bar .Checkout"),
   document.querySelector(".slide-bar .Login"),
   document.querySelector(".slide-bar .Signup"),
-  document.querySelector(".slide-bar .Profile")
+  document.querySelector(".slide-bar .Profile"),
 ];
 
-slidebarItems.forEach(item => {
+slidebarItems.forEach((item) => {
   if (item) {
     item.addEventListener("click", () => {
       slideBar.style.right = "-100%";
@@ -77,10 +76,7 @@ slidebarItems.forEach(item => {
   }
 });
 
-
-
-
-// 
+//
 
 function addingBlackBGOnclick(e) {
   let lowerNavBtn = document.querySelectorAll(".lower-nav-btn");
@@ -89,6 +85,13 @@ function addingBlackBGOnclick(e) {
   });
   e.target.classList.add("active");
 }
+function removingBlackBGOnclick() {
+  let lowerNavBtn = document.querySelectorAll(".lower-nav-btn");
+  lowerNavBtn.forEach((each) => {
+    each.classList.remove("active");
+  });
+}
+
 
 // SideBar Code
 ALL.addEventListener("click", (e) => {
@@ -99,7 +102,11 @@ ALL.addEventListener("click", (e) => {
   userSelection.style.display = "none";
   cardsRow.forEach((card) => {
     card.classList.remove("OFF");
+    card.classList.remove("aos-animate");
   });
+  if (typeof AOS !== "undefined") {
+    AOS.refresh();
+  }
 });
 
 ELECTRONICS.addEventListener("click", (e) => {
@@ -117,7 +124,11 @@ ELECTRONICS.addEventListener("click", (e) => {
     } else if (card.classList.contains("women")) {
       card.classList.add("OFF");
     }
+    card.classList.remove("aos-animate");
   });
+  if (typeof AOS !== "undefined") {
+    AOS.refresh();
+  }
 });
 JEWELERY.addEventListener("click", (e) => {
   addingBlackBGOnclick(e);
@@ -134,7 +145,11 @@ JEWELERY.addEventListener("click", (e) => {
     } else if (card.classList.contains("women")) {
       card.classList.add("OFF");
     }
+    card.classList.remove("aos-animate");
   });
+  if (typeof AOS !== "undefined") {
+    AOS.refresh();
+  }
 });
 
 menClothing.addEventListener("click", (e) => {
@@ -152,7 +167,11 @@ menClothing.addEventListener("click", (e) => {
     } else if (card.classList.contains("women")) {
       card.classList.add("OFF");
     }
+    card.classList.remove("aos-animate");
   });
+  if (typeof AOS !== "undefined") {
+    AOS.refresh();
+  }
 });
 womenClothing.addEventListener("click", (e) => {
   addingBlackBGOnclick(e);
@@ -169,35 +188,35 @@ womenClothing.addEventListener("click", (e) => {
     } else if (card.classList.contains("men")) {
       card.classList.add("OFF");
     }
+    card.classList.remove("aos-animate");
   });
+  if (typeof AOS !== "undefined") {
+    AOS.refresh();
+  }
 });
 
 Home.forEach((each) => {
   each.addEventListener("click", (e) => {
-    e.preventDefault();
-    mainContainer.style.display = "block";
-    disablingSignUpEtc();
-    cartCard.style.display = "none";
-    userSelection.style.display = "none";
-    ALL.classList.add("OFF");
-    cardsRow.forEach((card) => {
-      card.classList.remove("OFF");
+    // Adding black background to all
+    let lowerNavBtn = document.querySelectorAll(".lower-nav-btn");
+    lowerNavBtn.forEach((each) => {
+      each.classList.remove("active");
+      if (each.classList.contains("ALL")) {
+        each.classList.add("active");
+      }
     });
-  });
-});
+    // Adding black background to all
 
-Products.forEach((each) => {
-  each.addEventListener("click", (e) => {
+    e.preventDefault();
     mainContainer.style.display = "block";
     disablingSignUpEtc();
     cartCard.style.display = "none";
     userSelection.style.display = "none";
-    e.preventDefault();
-    ALL.classList.remove("OFF");
     cardsRow.forEach((card) => {
       card.classList.remove("OFF");
     });
   });
+
 });
 
 Cart.forEach((each) => {
@@ -233,6 +252,7 @@ Cart.forEach((each) => {
         cartCard.style.display = "flex";
       }
     });
+  removingBlackBGOnclick()
   });
 });
 
@@ -511,6 +531,7 @@ function disablingSignUpEtc() {
 
 Signup.forEach((each) => {
   each.addEventListener("click", (e) => {
+    removingBlackBGOnclick()
     // Disabling other containers
     signupContainer.style.display = "block";
     mainContainer.style.display = "none";
@@ -593,6 +614,7 @@ function OpeningPrfile() {
 Profile.forEach((each) => {
   each.addEventListener("click", () => {
     OpeningPrfile();
+    removingBlackBGOnclick()
   });
 });
 
@@ -614,6 +636,7 @@ function profileAfterSignUp(username, email) {
 
 Login.forEach((each) => {
   each.addEventListener("click", (e) => {
+    removingBlackBGOnclick()
     // Disabling other containers
     mainContainer.style.display = "none";
     signupContainer.style.display = "none";
@@ -653,6 +676,7 @@ function profileAfterLogin(loginEmail, loginUsername) {
 }
 
 loginProceedBtn.addEventListener("click", () => {
+  removingBlackBGOnclick()
   emailValue = loginEmailInput.value;
   passwordValue = loginPasswordInput.value;
 
@@ -718,6 +742,7 @@ function logoutProcess() {
 }
 let logoutBtn = document.querySelector(".logout-btn");
 logoutBtn.addEventListener("click", () => {
+  removingBlackBGOnclick()
   logoutProcess();
 });
 
@@ -792,7 +817,6 @@ function showingCartDetailInOrder(totalPrice) {
 
   function zeroPriceInOrder() {
     if (calculatedPrice == 0) {
-
       localStorage.setItem("cartData", "false");
 
       checkoutContainer.style.display = "none";
@@ -804,17 +828,12 @@ function showingCartDetailInOrder(totalPrice) {
         card.classList.remove("OFF");
         card.classList.add("ON");
       });
-    }
-  else
-  {
+    } else {
       localStorage.setItem("cartData", "true");
-
-  }
-
+    }
   }
 
   Checkout.forEach((each) => {
-    
     each.addEventListener("click", () => {
       userStatusChecking();
       mainContainer.style.display = "none";
@@ -823,22 +842,16 @@ function showingCartDetailInOrder(totalPrice) {
       zeroPriceInOrder();
     });
   });
-
-
-  
 }
 
-// Call this when the page loads
 
-document.addEventListener("DOMContentLoaded", () => {
-// showing alert when user clicks on checkout and cart is empty or user is log ot
+ // showing alert when user clicks on checkout and cart is empty or user is log ot
 
-
- document.querySelectorAll(".Checkout").forEach(btn => {
+ function checkoutStatus() {
+    document.querySelectorAll(".Checkout").forEach((btn) => {
     btn.onclick = () => {
-      
       const userLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-      const cartItems = (localStorage.getItem("cartData")) === "true" ;
+      const cartItems = localStorage.getItem("cartData") === "true";
 
       if (!userLoggedIn && !cartItems) {
         alert("Please Login or Sign Up, and add items to your cart.");
@@ -851,11 +864,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".main-container").style.display = "none";
         document.querySelector(".checkout-container").style.display = "block";
       }
-
     };
   });
+ }
+checkoutStatus()
 
-// showing alert when user clicks on checkout and cart is empty or user is log ot
+  // showing alert when user clicks on checkout and cart is empty or user is log ot
+  // Call this when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+checkoutStatus()
 
   let spinner = document.querySelector(".spinner");
   let spinnerOverlay = document.querySelector(".spinner-overlay");
@@ -863,9 +880,8 @@ document.addEventListener("DOMContentLoaded", () => {
   spinnerOverlay.style.display = "none";
   loadFromLocalStorage();
 
- let savedSignup = localStorage.getItem("signupData");
- allSignUp = savedSignup ? JSON.parse(savedSignup) : [];
-
+  let savedSignup = localStorage.getItem("signupData");
+  allSignUp = savedSignup ? JSON.parse(savedSignup) : [];
 
   let loginUsername = JSON.parse(localStorage.getItem("loginUsername"));
   let loginEmail = JSON.parse(localStorage.getItem("loginEmail"));
