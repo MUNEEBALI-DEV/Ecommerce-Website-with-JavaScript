@@ -447,7 +447,7 @@ ul li {
     position: fixed;
     border-radius: 100px;
     border-style: solid;
-    top: 40%;
+    top: 35%;
     left: 50%;
     transform: translate(-50px, 50px);
     font-size: larger;
@@ -467,3 +467,4 @@ ul li {
   content: "Loading......";
     top: 105%;
 }
+
